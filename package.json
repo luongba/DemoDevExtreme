@@ -1,0 +1,63 @@
+{
+    "name": "devextreme-vue3",
+    "version": "0.1.0",
+    "private": true,
+    "scripts": {
+        "serve": "vue-cli-service serve",
+        "build": "vue-cli-service build",
+        "lint": "vue-cli-service lint",
+        "build-themes": "devextreme build",
+        "postinstall": "npm run build-themes"
+    },
+    "dependencies": {
+        "@mdi/font": "^6.1.95",
+        "@mdi/js": "^6.1.95",
+        "@sonphat/common-v1": "git+https://gitlab+deploy-token-555625:NuwWbRFKnxkF9GmiEKWh@gitlab.com/SonPhat/Libraries/VueJS/CommonV1.git#devextreme21.2-vue3",
+        "@sonphat/core": "git+https://gitlab+deploy-token-555632:X4VgtDz9d5YwFr1nKTxa@gitlab.com/SonPhat/Libraries/Javascript/Core.git#core-kc18.0.0",
+        "@sonphat/devextreme": "git+https://gitlab+deploy-token-587051:m7_WwWjayGn7XLy6rAWE@gitlab.com/SonPhat/Libraries/devextreme.git#devextreme21.2-vue3",
+        "core-js": "^3.6.5",
+        "devextreme": "^21.2.4",
+        "devextreme-vue": "^21.2.4",
+        "mitt": "^3.0.0",
+        "moment": "^2.29.3",
+        "moment-timezone": "^0.5.34",
+        "sass": "^1.34.1",
+        "uuid": "^8.3.2",
+        "vue": "^3.0.0",
+        "vue-apollo": "^3.1.0",
+        "vue-i18n": "^9.1.7",
+        "vue-router": "^4.0.1",
+        "vuex": "^4.0.2"
+    },
+    "devDependencies": {
+        "@vue/cli-plugin-babel": "~4.5.0",
+        "@vue/cli-plugin-eslint": "~4.5.0",
+        "@vue/cli-service": "~4.5.0",
+        "@vue/compiler-sfc": "^3.0.0",
+        "babel-eslint": "^10.1.0",
+        "devextreme-cli": "1.2.21",
+        "devextreme-themebuilder": "^21.2.4",
+        "eslint": "^6.7.2",
+        "eslint-plugin-vue": "^7.0.0",
+        "sass-loader": "^10"
+    },
+    "eslintConfig": {
+        "root": true,
+        "env": {
+            "node": true
+        },
+        "extends": [
+            "plugin:vue/vue3-essential",
+            "eslint:recommended"
+        ],
+        "parserOptions": {
+            "parser": "babel-eslint"
+        },
+        "rules": {}
+    },
+    "browserslist": [
+        "> 1%",
+        "last 2 versions",
+        "not dead"
+    ]
+}

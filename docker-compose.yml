@@ -1,0 +1,16 @@
+version: '3.4'
+
+services:
+  fe_kehoachvantai:
+    image: "registry.gitlab.com/sonphat/lenhdientu/root/deployment/lenhdientu/frontends/lenhvanchuyen_fe:1.3.0.1-alpha"
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    ports:
+      - 3001:80
+    environment:
+    - TZ=Asia/Ho_Chi_Minh
+    - WebFE_keycloak={"URL":"https://dangnhap.sbus.vn/auth","Realm":"Sbus.vn","ClientId":"LaiXe"}
+    - WebFE_API_Default_BaseUrl="http://lenh.nguyencongtuyen.local:19666/api/" #Kế hoạch lệnh vận chuyển
+    - WebFE_API_QuanLyThongTin="http://lenh.nguyencongtuyen.local:19666/api/QuanLyThongTin/" #Quản lý thông tin
+    - WebFE_API_LenhVanChuyen_BaseUrl="http://lenh.nguyencongtuyen.local:19666/api/LenhVanChuyen/" #Quản lý lệnh

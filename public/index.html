@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="vi">
+    <head>
+        <style>
+            body.sonphat-loading::after {
+                background-color: #00000026;
+                background-image: url("<%= BASE_URL %>Circle-Loading.svg");
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: 20%;
+                z-index: 9999999;
+                position: fixed;
+                width: 100%;
+                height: 100%;
+                top: 0;
+                left: 0;
+                content: "";
+            }
+        </style>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+        <link rel="icon" href="<%= BASE_URL %>logo.ico" />
+        <!-- <title><%= htmlWebpackPlugin.options.title %></title> -->
+        <title>Lệnh Điện Tử - Sbus.vn</title>
+        <script src="<%= BASE_URL %>sp/system.js"></script>
+
+        <% if (!htmlWebpackPlugin.options.isDev) { %>
+            <script src="<%= BASE_URL %>sp/production.js"></script>
+        <% } else { %>
+            <script src="<%= BASE_URL %>sp/development.js"></script>
+        <% } %>
+    </head>
+    <body class="dx-viewport sonphat-loading">
+        <noscript>
+            <strong
+                >Không thể tải ứng dụng, vui lòng kích hoạt JavaScript rồi tải
+                lại trang.
+            </strong>
+            <style>
+                body.sonphat-loading::after {
+                    display: none;
+                }
+            </style>
+        </noscript>
+        <div id="app"></div>
+
+        <!-- built files will be auto injected -->
+    </body>
+</html>

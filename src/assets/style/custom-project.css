@@ -1,0 +1,26 @@
+.table-fixing-padding
+    .dx-datagrid
+    .dx-datagrid-content
+    .dx-datagrid-table
+    .dx-header-row
+    td {
+    padding: 16px 14px;
+}
+
+.kanban-table
+    .dx-datagrid-content
+    .dx-datagrid-table
+    .dx-row
+    .dx-command-select {
+    width: 56px !important;
+    min-width: 56px !important;
+    max-width: 56px !important;
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+}
+
+.edit-text-single {
+    width: auto;
+    border: none;
+    outline: none;
+}
