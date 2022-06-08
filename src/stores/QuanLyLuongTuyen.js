@@ -2,21 +2,31 @@ export default {
     namespaced: true,
     state: () => ({
         arrayXeKhach: [],
-        chiTietXeKhach: {
-            xx: "xxx",
+        chiTietLuongTuyen: {
+            idBenDen: "",
+            idBenDi: "",
+            idTinhDen: "",
+            idTinhDi: "",
+            loTrinhDi: {
+                hanhTrinhChay: "",
+                cuLy: "",
+                gioXuatBens: [],
+                diemDungNghis: [],
+            },
+            loTrinhVe: {
+                hanhTrinhChay: "",
+                cuLy: "",
+                gioXuatBens: [],
+                diemDungNghis: [],
+            },
+            maTuyen: "",
         },
     }),
 
     mutations: {
-        SET_CHI_TIET_BEN(state, chitietBen) {
-            state.ChiTietBenXe = chitietBen;
-        },
-        SET_DATA_XE(state, data) {
-            state.arrayXeKhach = data;
-        },
-        SET_CHI_TIET_XE(state, data) {
-            state.chiTietXeKhach = data;
-        },
+        CHI_TIET_LUONG_TUYEN(state, data) {
+            state.chiTietLuongTuyen = data
+        }
     },
 
     actions: {
@@ -84,7 +94,7 @@ export default {
                 throw ex;
             }
         },
-        async LayGoiYMaTuyenAction(_,MaTuyen){
+        async LayGoiYMaTuyenAction(_, MaTuyen) {
             try {
                 let resp = await this.$Core.Api.QuanLyThongTin(
                     this.$i18n.global.t("urlQLTT.GoiYMaTuyen"),
@@ -104,7 +114,7 @@ export default {
                 throw ex;
             }
         },
-        async ThemLuongTuyenAction(_, dataTuyen){
+        async ThemLuongTuyenAction(_, dataTuyen) {
             try {
                 let resp = await this.$Core.Api.QuanLyThongTin(
                     this.$i18n.global.t("urlQLTT.ThemTuyen"),
@@ -120,6 +130,102 @@ export default {
                     throw Error("Không kết nối được đến máy chủ!");
                 throw ex;
             }
+        },
+        async chiTietLuongTuyenAction({ commit }, idLuongTuyen) {
+            try {
+                let resp = await this.$Core.Api.QuanLyThongTin(
+                    this.$i18n.global.t("urlQLTT.ChiTietTuyen"),
+                    {
+                        idLuongTuyen,
+                    }
+                ).Get();
+                if (resp.StatusCode === 200) {
+                    let result = resp.Data.data || {};
+                    let temp = {
+                        idBenDen: result.IdBenDen,
+                        idBenDi: result.IdBenDi,
+                        idTinhDen: result.IdTinhDen,
+                        idTinhDi: result.IdTinhDi,
+                        loTrinhDi: {
+                            hanhTrinhChay: result.LoTrinhDi.HanhTrinhChay,
+                            cuLy: result.LoTrinhDi.CuLy,
+                            gioXuatBens: result.LoTrinhDi.GioXuatBens.map(item => {
+                                return {
+
+                                    GioXuatBen: item.GioXuatBen,
+                                }
+                            }),
+                            diemDungNghis: result.LoTrinhDi.DiemDungNghis.map(item => {
+                                return {
+                                    TenDiemDung: item.TenDiemDung,
+                                }
+                            }),
+                        },
+                        loTrinhVe: {
+                            hanhTrinhChay: result.LoTrinhVe.HanhTrinhChay,
+                            cuLy: result.LoTrinhVe.CuLy,
+                            gioXuatBens: result.LoTrinhVe.GioXuatBens.map(item => {
+                                return {
+
+                                    GioXuatBen: item.GioXuatBen,
+                                }
+                            }),
+                            diemDungNghis: result.LoTrinhVe.DiemDungNghis.map(item => {
+                                return {
+                                    TenDiemDung: item.TenDiemDung,
+                                }
+                            }),
+                        },
+
+                        maTuyen: result.MaTuyen,
+                    } || {}
+                    commit("CHI_TIET_LUONG_TUYEN", temp)
+                } else {
+                    return [];
+                }
+            } catch (ex) {
+                if (ex.message == "Network Error")
+                    throw Error("Không kết nối được đến máy chủ!");
+                throw ex;
+            }
+        },
+        async SuaLuongTuyenAction(_, data){
+            try {
+                let resp = await this.$Core.Api.QuanLyThongTin(
+                    this.$i18n.global.t("urlQLTT.SuaLuongTuyen"),
+                ).Post(data);
+                if (resp.StatusCode === 200) {
+                    let result = resp.Data || {};
+                    return result;
+                } else {
+                    return [];
+                }
+            } catch (ex) {
+                if (ex.message == "Network Error")
+                    throw Error("Không kết nối được đến máy chủ!");
+                throw ex;
+            }
+        },
+        resetChitiet({ commit }) {
+            commit("CHI_TIET_LUONG_TUYEN", {
+                idBenDen: "",
+                idBenDi: "",
+                idTinhDen: "",
+                idTinhDi: "",
+                loTrinhDi: {
+                    hanhTrinhChay: "",
+                    cuLy: "",
+                    gioXuatBens: [],
+                    diemDungNghis: [],
+                },
+                loTrinhVe: {
+                    hanhTrinhChay: "",
+                    cuLy: "",
+                    gioXuatBens: [],
+                    diemDungNghis: [],
+                },
+                maTuyen: "",
+            })
         }
     },
 };

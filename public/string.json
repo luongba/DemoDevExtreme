@@ -130,7 +130,9 @@
         "XoaLuongTuyen": "QuanLyThongTin/xoa-luong-tuyen",
         "LayBenThuocTinh": "QuanLyThongTin/danh-sach-ben-xe-thuoc-tinh-thanh",
         "GoiYMaTuyen": "QuanLyThongTin/goi-y-ma-tuyen",
-        "ThemTuyen": "QuanLyThongTin/them-luong-tuyen"
+        "ThemTuyen": "QuanLyThongTin/them-luong-tuyen",
+        "ChiTietTuyen": "QuanLyThongTin/chi-tiet-luong-tuyen",
+        "SuaLuongTuyen": "QuanLyThongTin/sua-luong-tuyen"
         
 
 
